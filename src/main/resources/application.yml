@@ -1,1 +1,22 @@
+server:
+  port: 8081
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:h2:~/livraria
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  flyway:
+    url: jdbc:h2:~/livraria
+    user: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWD:root}
+    schemas:
+      - ${DATABASE:livraria}
