@@ -55,7 +55,11 @@ public class Autor {
         return criado;
     }
 
-    public static Autor build(String nome, String email, LocalDateTime nascimento, String biografia){
+    public static Autor buildNewAutor(String nome, String email, LocalDateTime nascimento, String biografia){
         return new Autor(nome, email, nascimento, biografia, LocalDateTime.now());
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
