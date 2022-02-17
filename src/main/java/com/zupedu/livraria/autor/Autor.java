@@ -18,7 +18,7 @@ public class Autor {
 
     private String biografia;
 
-    private LocalDateTime criado;
+    private LocalDateTime dataCriado;
 
     public Autor() {
     }
@@ -28,7 +28,7 @@ public class Autor {
         this.email = email;
         this.dataNascimento = nascimento;
         this.biografia = biografia;
-        this.criado = inclusao;
+        this.dataCriado = inclusao;
     }
 
     public Long getId() {
@@ -51,8 +51,8 @@ public class Autor {
         return biografia;
     }
 
-    public LocalDateTime getCriado() {
-        return criado;
+    public LocalDateTime getDataCriado() {
+        return dataCriado;
     }
 
     public static Autor buildNewAutor(String nome, String email, LocalDateTime nascimento, String biografia){

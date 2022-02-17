@@ -4,5 +4,5 @@ CREATE TABLE autor (
   email varchar(120),
   data_nascimento timestamp,
   biografia varchar(300),
-  criado timestamp
+  data_criado timestamp
 );

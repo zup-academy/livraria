@@ -37,7 +37,7 @@ public class AutorResponse {
     public static AutorResponse of(Autor autor){
         return new AutorResponse(autor.getId(), autor.getNome(),
                 autor.getEmail(), autor.getDataNascimento(),
-                autor.getBiografia(), autor.getCriado());
+                autor.getBiografia(), autor.getDataCriado());
     }
 
     public Long getId() {
