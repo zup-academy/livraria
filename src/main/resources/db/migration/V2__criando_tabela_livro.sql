@@ -6,6 +6,5 @@ CREATE TABLE livro (
   isbn int,
   data_publicacao timestamp,
   autor_id bigint,
-  data_criacao timestamp,
-  foreign key (autor_id) references autor(id)
+  data_criacao timestamp
 );
