@@ -30,6 +30,8 @@ public class LivroRequest {
 
     private StatusLivro statusLivro;
 
+    private ClassificacaoLivro classificacao;
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -58,11 +60,16 @@ public class LivroRequest {
         this.statusLivro = statusLivro;
     }
 
+    public void setClassificacao(ClassificacaoLivro classificacao) {
+        this.classificacao = classificacao;
+    }
+
     public Livro getLivro(AutorRepository autorRepository) {
         var autor= autorRepository.findById(this.idAutor)
                 .orElseThrow(AutorInexistenteException::new);
 
         return new Livro(this.titulo, this.valor, this.numeroPaginas,
-                this.isbn, this.dataPublicacao, autor, this.statusLivro);
+                this.isbn, this.dataPublicacao, autor, this.statusLivro,
+                this.classificacao);
     }
 }

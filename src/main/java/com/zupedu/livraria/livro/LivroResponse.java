@@ -32,10 +32,13 @@ public class LivroResponse {
 
     private StatusLivro statusLivro;
 
+    private ClassificacaoLivro classificacao;
+
     public LivroResponse(Long id, String titulo, BigDecimal valor,
                          int numeroPaginas, int isbn,
                          LocalDate dataPublicacao, AutorLivroResponse autor,
-                         LocalDateTime dataCriacao, StatusLivro statusLivro) {
+                         LocalDateTime dataCriacao, StatusLivro statusLivro,
+                         ClassificacaoLivro classificacao) {
         this.id = id;
         this.titulo = titulo;
         this.valor = valor;
@@ -45,6 +48,7 @@ public class LivroResponse {
         this.autor = autor;
         this.dataCriacao = dataCriacao;
         this.statusLivro = statusLivro;
+        this.classificacao = classificacao;
     }
 
     public Long getId() {
@@ -83,6 +87,10 @@ public class LivroResponse {
         return statusLivro;
     }
 
+    public ClassificacaoLivro getClassificacao() {
+        return classificacao;
+    }
+
     public static LivroResponse of(Livro livro){
         var autorLivroResponse = new AutorLivroResponse(
                 livro.getAutor().getId(),
@@ -90,6 +98,7 @@ public class LivroResponse {
 
         return new LivroResponse(livro.getId(), livro.getTitulo(), livro.getValor(),
                 livro.getNumeroPaginas(), livro.getIsbn(), livro.getDataPublicacao(),
-                autorLivroResponse, livro.getDataCriacao(), livro.getStatusLivro());
+                autorLivroResponse, livro.getDataCriacao(), livro.getStatusLivro(),
+                livro.getClassificacao());
     }
 }

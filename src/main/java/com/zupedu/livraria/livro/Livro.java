@@ -30,13 +30,18 @@ public class Livro {
 
     private LocalDateTime dataCriacao;
 
+    @Enumerated(EnumType.STRING)
     private StatusLivro statusLivro;
+
+    @Enumerated(EnumType.STRING)
+    private ClassificacaoLivro classificacao;
 
     public Livro() {
     }
 
     public Livro(String titulo, BigDecimal valor, int numeroPaginas,
-                 int isbn, LocalDate dataPublicacao, Autor autor, StatusLivro statusLivro) {
+                 int isbn, LocalDate dataPublicacao, Autor autor,
+                 StatusLivro statusLivro, ClassificacaoLivro classificacao) {
         this.titulo = titulo;
         this.valor = valor;
         this.numeroPaginas = numeroPaginas;
@@ -45,6 +50,7 @@ public class Livro {
         this.autor = autor;
         this.dataCriacao = LocalDateTime.now();
         this.statusLivro = statusLivro;
+        this.classificacao = classificacao;
     }
 
     public Long getId() {
@@ -81,5 +87,9 @@ public class Livro {
 
     public StatusLivro getStatusLivro() {
         return statusLivro;
+    }
+
+    public ClassificacaoLivro getClassificacao() {
+        return classificacao;
     }
 }
