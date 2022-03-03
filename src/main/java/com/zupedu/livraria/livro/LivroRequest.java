@@ -6,6 +6,7 @@ import com.zupedu.livraria.autor.AutorRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -24,7 +25,10 @@ public class LivroRequest {
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataPublicacao;
 
+    @NotNull
     private long idAutor;
+
+    private StatusLivro statusLivro;
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -50,11 +54,15 @@ public class LivroRequest {
         this.idAutor = idAutor;
     }
 
+    public void setStatusLivro(StatusLivro statusLivro) {
+        this.statusLivro = statusLivro;
+    }
+
     public Livro getLivro(AutorRepository autorRepository) {
         var autor= autorRepository.findById(this.idAutor)
                 .orElseThrow(AutorInexistenteException::new);
 
         return new Livro(this.titulo, this.valor, this.numeroPaginas,
-                this.isbn, this.dataPublicacao, autor);
+                this.isbn, this.dataPublicacao, autor, this.statusLivro);
     }
 }

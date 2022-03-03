@@ -30,11 +30,13 @@ public class Livro {
 
     private LocalDateTime dataCriacao;
 
+    private StatusLivro statusLivro;
+
     public Livro() {
     }
 
     public Livro(String titulo, BigDecimal valor, int numeroPaginas,
-                 int isbn, LocalDate dataPublicacao, Autor autor) {
+                 int isbn, LocalDate dataPublicacao, Autor autor, StatusLivro statusLivro) {
         this.titulo = titulo;
         this.valor = valor;
         this.numeroPaginas = numeroPaginas;
@@ -42,6 +44,7 @@ public class Livro {
         this.dataPublicacao = dataPublicacao;
         this.autor = autor;
         this.dataCriacao = LocalDateTime.now();
+        this.statusLivro = statusLivro;
     }
 
     public Long getId() {
@@ -74,5 +77,9 @@ public class Livro {
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
+    }
+
+    public StatusLivro getStatusLivro() {
+        return statusLivro;
     }
 }

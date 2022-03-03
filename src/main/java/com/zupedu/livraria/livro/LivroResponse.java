@@ -30,10 +30,12 @@ public class LivroResponse {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataCriacao;
 
+    private StatusLivro statusLivro;
+
     public LivroResponse(Long id, String titulo, BigDecimal valor,
                          int numeroPaginas, int isbn,
                          LocalDate dataPublicacao, AutorLivroResponse autor,
-                         LocalDateTime dataCriacao) {
+                         LocalDateTime dataCriacao, StatusLivro statusLivro) {
         this.id = id;
         this.titulo = titulo;
         this.valor = valor;
@@ -42,6 +44,7 @@ public class LivroResponse {
         this.dataPublicacao = dataPublicacao;
         this.autor = autor;
         this.dataCriacao = dataCriacao;
+        this.statusLivro = statusLivro;
     }
 
     public Long getId() {
@@ -76,6 +79,10 @@ public class LivroResponse {
         return dataCriacao;
     }
 
+    public StatusLivro getStatusLivro() {
+        return statusLivro;
+    }
+
     public static LivroResponse of(Livro livro){
         var autorLivroResponse = new AutorLivroResponse(
                 livro.getAutor().getId(),
@@ -83,6 +90,6 @@ public class LivroResponse {
 
         return new LivroResponse(livro.getId(), livro.getTitulo(), livro.getValor(),
                 livro.getNumeroPaginas(), livro.getIsbn(), livro.getDataPublicacao(),
-                autorLivroResponse, livro.getDataCriacao());
+                autorLivroResponse, livro.getDataCriacao(), livro.getStatusLivro());
     }
 }

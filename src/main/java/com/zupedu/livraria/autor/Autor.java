@@ -20,10 +20,12 @@ public class Autor {
 
     private LocalDateTime dataCriado;
 
-    public Autor() {
+    private Autor() {
     }
 
-    private Autor(String nome, String email, LocalDateTime nascimento, String biografia, LocalDateTime inclusao) {
+    private Autor(String nome, String email,
+                  LocalDateTime nascimento, String biografia,
+                  LocalDateTime inclusao) {
         this.nome = nome;
         this.email = email;
         this.dataNascimento = nascimento;
@@ -55,11 +57,10 @@ public class Autor {
         return dataCriado;
     }
 
-    public static Autor buildNewAutor(String nome, String email, LocalDateTime nascimento, String biografia){
-        return new Autor(nome, email, nascimento, biografia, LocalDateTime.now());
+    public static Autor buildNewAutor(String nome, String email,
+                                      LocalDateTime nascimento, String biografia){
+        return new Autor(nome, email, nascimento,
+                biografia, LocalDateTime.now());
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

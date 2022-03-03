@@ -6,5 +6,6 @@ CREATE TABLE livro (
   isbn int,
   data_publicacao timestamp,
   autor_id bigint,
+  status_livro int,
   data_criacao timestamp
 );
