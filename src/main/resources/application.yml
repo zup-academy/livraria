@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/livraria"
+    password: admin
+    username: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    ddl-auto: create
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
