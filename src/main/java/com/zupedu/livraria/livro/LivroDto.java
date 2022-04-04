@@ -1,11 +1,12 @@
 package com.zupedu.livraria.livro;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zupedu.livraria.autor.Autor;
-import com.zupedu.livraria.categoria.Categoria;
+import com.zupedu.livraria.autor.AutorInexistenteException;
+import com.zupedu.livraria.autor.AutorRepository;
+import com.zupedu.livraria.categoria.CategoriaInexistenteException;
+import com.zupedu.livraria.categoria.CategoriaRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -115,5 +116,37 @@ public class LivroDto {
 
     public void setAlterado(LocalDateTime alterado) {
         this.alterado = alterado;
+    }
+
+    public Livro getLivro(AutorRepository autorRepository, CategoriaRepository categoriaRepository) {
+         var autor = autorRepository.findById(this.idAutor)
+                 .orElseThrow(AutorInexistenteException::new);
+
+         var categoria = categoriaRepository.findById(this.idCategoria)
+                 .orElseThrow(CategoriaInexistenteException::new);
+
+         return new Livro(this.titulo, this.dataDeLancamento, this.resumo,
+                 this.idioma, categoria, autor, this.formato, this.paginas);
+    }
+
+    public LivroDto(Long id, String titulo, LocalDate dataDeLancamento, String resumo,
+                    String idioma, Long idCategoria, Long idAutor, FormatoEnum formato,
+                    int paginas, LocalDateTime alterado) {
+        this.id = id;
+        this.titulo = titulo;
+        this.dataDeLancamento = dataDeLancamento;
+        this.resumo = resumo;
+        this.idioma = idioma;
+        this.idCategoria = idCategoria;
+        this.idAutor = idAutor;
+        this.formato = formato;
+        this.paginas = paginas;
+        this.alterado = alterado;
+    }
+
+    public static LivroDto from(Livro livro) {
+        return new LivroDto(livro.getId(), livro.getTitulo(), livro.getDataDeLancamento(),
+                livro.getResumo(), livro.getIdioma(), livro.getCategoria().getId(),
+                livro.getAutor().getId(), livro.getFormato(), livro.getPaginas(), livro.getAlterado());
     }
 }
