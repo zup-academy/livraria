@@ -23,7 +23,7 @@ public class CategoriaDto {
         this.nome = nome;
     }
 
-    public Categoria getCategoria() {
+    public Categoria toModel() {
         return new Categoria(this.nome);
     }
 

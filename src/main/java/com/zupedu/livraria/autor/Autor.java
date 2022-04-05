@@ -12,7 +12,6 @@ import java.time.LocalDate;
 
 @Entity
 public class Autor {
-    Logger logger = LoggerFactory.getLogger(Autor.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +24,9 @@ public class Autor {
     private LocalDate nascimento;
 
     private String nacionalidade;
+
+    public Autor() {
+    }
 
     public Autor(String nome, String biografia, LocalDate nascimento, String nacionalidade) {
         this.nome = nome;
@@ -61,9 +63,9 @@ public class Autor {
     }
 
     public boolean existeOutroAutorComMesmosDados(AutorRepository repository){
-        if(repository.findByNomeAndNacionalidadeAndNascimento(this).isPresent()) {
-            logger.info("Já existe um autor com esse nome : {} , nascionalidade: {} e nascimento: {} ",
-                    this.nome, this.nacionalidade, this.nascimento);
+        if(repository.findByNomeAndNacionalidadeAndNascimento(
+                this.getNome(), this.getNacionalidade(), this.nascimento)
+                .isPresent()) {
             return true;
         }
         return false;

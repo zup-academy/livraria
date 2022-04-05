@@ -13,3 +13,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+#logging:
+#  file:
+#    name: ./livraria.log
+#    path: ./
+#  level:
+#    root: trace

@@ -20,7 +20,7 @@ public class AutorController {
 
     @PostMapping
     public ResponseEntity<?> inserir(@Valid @RequestBody AutorDto dto){
-        var autor = dto.getAutor();
+        var autor = dto.toModel();
         return salvar(autor, HttpStatus.CREATED);
     }
 

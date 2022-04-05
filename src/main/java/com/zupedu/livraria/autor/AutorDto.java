@@ -15,11 +15,13 @@ public class AutorDto {
 
     private String biografia;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate nascimento;
 
     private String nacionalidade;
+
+    public AutorDto() {
+    }
 
     private AutorDto(Long id, String nome, String biografia, LocalDate nascimento, String nacionalidade) {
         this.id = id;
@@ -73,7 +75,7 @@ public class AutorDto {
         return id;
     }
 
-    public Autor getAutor(){
+    public Autor toModel(){
         return new Autor(
                 this.nome,
                 this.biografia,

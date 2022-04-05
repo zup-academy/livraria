@@ -34,9 +34,12 @@ public class LivroDto {
 
     private int paginas;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime alterado;
+
+    public LivroDto() {
+    }
 
     public Long getId() {
         return id;
@@ -118,7 +121,7 @@ public class LivroDto {
         this.alterado = alterado;
     }
 
-    public Livro getLivro(AutorRepository autorRepository, CategoriaRepository categoriaRepository) {
+    public Livro toModel(AutorRepository autorRepository, CategoriaRepository categoriaRepository) {
          var autor = autorRepository.findById(this.idAutor)
                  .orElseThrow(AutorInexistenteException::new);
 
