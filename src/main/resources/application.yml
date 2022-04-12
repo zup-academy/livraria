@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/livraria"
+    url: "jdbc:postgresql://db:5432/livraria"
     password: admin
     username: admin
     driver-class-name: org.postgresql.Driver
