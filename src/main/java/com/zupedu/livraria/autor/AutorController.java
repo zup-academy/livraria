@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/autores")
@@ -30,7 +31,7 @@ public class AutorController {
         }else{
             autor = autorRepository.save(autor);
 
-            logger.info("Autor cadastrado com id {}", autor.getId());
+            logger.info("Autor cadastrado : {}", autor);
 
             return ResponseEntity
                     .status(status)
@@ -45,7 +46,7 @@ public class AutorController {
 
         autorRepository.delete(autor);
 
-        logger.info("Autor de id {} excluido", autor.getId());
+        logger.info("Autor {} excluido", autor);
 
         return  ResponseEntity.ok().build();
     }
@@ -57,8 +58,33 @@ public class AutorController {
 
         autor.atualizaDados(dto);
 
+        logger.info("Autor {} atualizado", autor);
+
         return salvar(autor, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> consultar(@PathVariable Long id){
+        var autor = autorRepository.findById(id)
+                .orElseThrow(AutorInexistenteException::new);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(AutorDto.from(autor));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> lista(){
+        var autores = autorRepository.findAll();
+        var autoresResponse = new ArrayList<AutorDto>();
+
+        for (var autor:autores) {
+            autoresResponse.add(AutorDto.from(autor));
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(autoresResponse);
+    }
 
 }

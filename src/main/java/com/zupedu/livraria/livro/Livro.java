@@ -33,6 +33,9 @@ public class Livro {
 
     private LocalDateTime alterado;
 
+    public Livro() {
+    }
+
     public Livro(String titulo, LocalDate dataDeLancamento, String resumo,
                  String idioma, Categoria categoria, Autor autor,
                  FormatoEnum formato, int paginas) {
@@ -85,5 +88,21 @@ public class Livro {
 
     public LocalDateTime getAlterado() {
         return alterado;
+    }
+
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", dataDeLancamento=" + dataDeLancamento +
+                ", resumo='" + resumo + '\'' +
+                ", idioma='" + idioma + '\'' +
+                ", categoria=" + categoria +
+                ", autor=" + autor +
+                ", formato=" + formato +
+                ", paginas=" + paginas +
+                ", alterado=" + alterado +
+                '}';
     }
 }

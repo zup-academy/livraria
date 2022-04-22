@@ -70,4 +70,15 @@ public class Autor {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", biografia='" + biografia + '\'' +
+                ", nascimento=" + nascimento +
+                ", nacionalidade='" + nacionalidade + '\'' +
+                '}';
+    }
 }

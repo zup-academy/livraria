@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 
 @RestController
@@ -28,7 +29,7 @@ public class CategoriaController {
         }else{
             var categoria = categoriaRepository.save(request.toModel());
 
-            logger.info("Categoria {} cadastrada com sucesso", categoria.getNome());
+            logger.info("Categoria {} cadastrada com sucesso", categoria);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(CategoriaDto.from(categoria));
@@ -44,6 +45,20 @@ public class CategoriaController {
         categoriaRepository.delete(categoria);
 
         return  ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<?> lista(){
+        var categorias = categoriaRepository.findAll();
+        var categoriasResponse = new ArrayList<CategoriaDto>();
+
+        for (var categoria:categorias) {
+            categoriasResponse.add(CategoriaDto.from(categoria));
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(categoriasResponse);
     }
 
 }

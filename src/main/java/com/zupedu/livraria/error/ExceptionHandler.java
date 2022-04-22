@@ -24,10 +24,9 @@ public class ExceptionHandler {
 
         Map<String, Object> body = Map.of(
                 "status", 500,
-                "com/zupedu/livraria/error", "Internal Server Error",
                 "path", request.getDescription(false).replace("uri=", ""),
                 "timestamp", LocalDateTime.now(),
-                "message", "Ocorreu um erro interno. Por favor contate o administrador."
+                "message", e.getLocalizedMessage()
         );
         return ResponseEntity
                 .internalServerError().body(body);
@@ -41,7 +40,6 @@ public class ExceptionHandler {
 
         Map<String, Object> body = Map.of(
                 "status", 422,
-                "com/zupedu/livraria/error", e.getCause(),
                 "path", request.getDescription(false).replace("uri=", ""),
                 "timestamp", LocalDateTime.now(),
                 "message", e.getMessage()

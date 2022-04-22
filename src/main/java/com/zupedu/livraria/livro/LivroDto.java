@@ -5,6 +5,7 @@ import com.zupedu.livraria.autor.AutorInexistenteException;
 import com.zupedu.livraria.autor.AutorRepository;
 import com.zupedu.livraria.categoria.CategoriaInexistenteException;
 import com.zupedu.livraria.categoria.CategoriaRepository;
+import org.slf4j.Logger;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
