@@ -1,4 +1,4 @@
-package om.zupedu.livraria;
+package com.zupedu.livraria;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
