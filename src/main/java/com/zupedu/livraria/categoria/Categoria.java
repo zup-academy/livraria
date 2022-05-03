@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class Categoria {
@@ -13,12 +14,15 @@ public class Categoria {
 
     private String nome;
 
+    private LocalDateTime criacao;
+
     @Deprecated
     public Categoria() {
     }
 
     public Categoria(String nome) {
         this.nome = nome;
+        this.criacao = LocalDateTime.now();
     }
 
     public Long getId() {

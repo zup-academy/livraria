@@ -33,6 +33,8 @@ public class Livro {
 
     private LocalDateTime alterado;
 
+    private LocalDateTime criacao;
+
     public Livro() {
     }
 
@@ -48,6 +50,7 @@ public class Livro {
         this.formato = formato;
         this.paginas = paginas;
         this.alterado = LocalDateTime.now();
+        this.criacao = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -103,6 +106,7 @@ public class Livro {
                 ", formato=" + formato +
                 ", paginas=" + paginas +
                 ", alterado=" + alterado +
+                ", criado=" + criacao +
                 '}';
     }
 }

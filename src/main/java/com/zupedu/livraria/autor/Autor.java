@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Autor {
@@ -25,6 +26,8 @@ public class Autor {
 
     private String nacionalidade;
 
+    private LocalDateTime criacao;
+
     public Autor() {
     }
 
@@ -33,6 +36,7 @@ public class Autor {
         this.biografia = biografia;
         this.nascimento = nascimento;
         this.nacionalidade = nacionalidade;
+        this.criacao = LocalDateTime.now();
     }
 
     public Long getId() {
