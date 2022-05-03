@@ -1,7 +1,7 @@
-package com.zupedu.livraria.infra.sql;
+package com.zupedu.livraria.adapters.persistence;
 
-import com.zupedu.livraria.cadastrodeautores.Autor;
-import com.zupedu.livraria.cadastrodeautores.CadastraAutorRepository;
+import com.zupedu.livraria.domain.Autor;
+import com.zupedu.livraria.domain.CadastraAutorRepository;
 import org.springframework.stereotype.Component;
 
 @Component

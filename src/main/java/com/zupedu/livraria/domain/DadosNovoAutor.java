@@ -1,4 +1,4 @@
-package com.zupedu.livraria.cadastrodeautores;
+package com.zupedu.livraria.domain;
 
 public interface DadosNovoAutor {
 

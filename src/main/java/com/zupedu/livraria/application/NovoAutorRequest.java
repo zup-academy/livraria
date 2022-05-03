@@ -1,7 +1,8 @@
-package com.zupedu.livraria.cadastrodeautores;
+package com.zupedu.livraria.application;
 
+import com.zupedu.livraria.domain.Autor;
+import com.zupedu.livraria.domain.DadosNovoAutor;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

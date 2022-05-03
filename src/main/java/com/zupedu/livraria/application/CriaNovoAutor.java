@@ -1,5 +1,8 @@
-package com.zupedu.livraria.cadastrodeautores;
+package com.zupedu.livraria.application;
 
+import com.zupedu.livraria.domain.Autor;
+import com.zupedu.livraria.domain.CadastraAutorRepository;
+import com.zupedu.livraria.domain.DadosNovoAutor;
 import org.springframework.stereotype.Service;
 
 @Service

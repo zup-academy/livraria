@@ -1,9 +1,8 @@
-package com.zupedu.livraria.cadastrodeautores;
+package com.zupedu.livraria.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -33,6 +32,10 @@ public class Autor {
         this.descricao = descricao;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Autor.class.getSimpleName() + "[", "]")
@@ -54,9 +57,5 @@ public class Autor {
     @Override
     public int hashCode() {
         return Objects.hash(email);
-    }
-
-    public Long getId() {
-        return id;
     }
 }
