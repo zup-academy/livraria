@@ -1,9 +1,7 @@
 package com.zupedu.livraria.venda;
 
-import com.zupedu.livraria.estoque.EstoqueRepository;
-import com.zupedu.livraria.livro.LivroRepository;
-
-import java.math.BigDecimal;
+import com.zupedu.livraria.estoque.Estoque;
+import com.zupedu.livraria.livro.Livro;
 
 public class VendaRequest {
 
@@ -14,14 +12,7 @@ public class VendaRequest {
     public VendaRequest() {
     }
 
-    public Venda toModel(LivroRepository livroRepository,
-                         EstoqueRepository estoqueRepository){
-        var livro = livroRepository.findById(this.idLivro)
-                .orElseThrow(IllegalArgumentException::new);
-
-        var estoque = estoqueRepository.findByLivro(livro)
-                .orElseThrow(IllegalArgumentException::new);
-
+    public Venda toModel(Livro livro, Estoque estoque){
         if (estoque.estaVazio()){
             throw new ImpossibilidadeVendaException();
         }
@@ -35,5 +26,9 @@ public class VendaRequest {
 
     public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public Long getIdLivro() {
+        return idLivro;
     }
 }

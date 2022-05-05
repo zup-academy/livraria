@@ -24,11 +24,19 @@ public class VendaController {
 
     @PostMapping
     public VendaResponse incluir(@RequestBody VendaRequest vendaRequest){
-        var venda = vendaRequest.toModel(livroRepository, estoqueRepository);
+        var livro = livroRepository.findById(vendaRequest.getIdLivro())
+                .orElseThrow(IllegalArgumentException::new);
+
+        var estoque = estoqueRepository.findByLivro(livro)
+                .orElseThrow(IllegalArgumentException::new);
+
+        var venda = vendaRequest.toModel(livro, estoque);
 
         vendaRepository.save(venda);
 
+        estoque.realizaBaixaEstoque();
+        estoqueRepository.save(estoque);
+
         return VendaResponse.from(venda);
     }
-
 }
