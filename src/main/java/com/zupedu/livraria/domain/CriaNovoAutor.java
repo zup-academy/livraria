@@ -1,4 +1,4 @@
-package com.zupedu.livraria.application;
+package com.zupedu.livraria.domain;
 
 import com.zupedu.livraria.domain.Autor;
 import com.zupedu.livraria.domain.CadastraAutorRepository;

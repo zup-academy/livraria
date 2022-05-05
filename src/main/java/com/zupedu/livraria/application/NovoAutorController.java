@@ -1,6 +1,7 @@
 package com.zupedu.livraria.application;
 
 import com.zupedu.livraria.domain.Autor;
+import com.zupedu.livraria.domain.CriaNovoAutor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
