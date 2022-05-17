@@ -1,0 +1,15 @@
+groups:
+  - name: livraria
+    rules:
+      - alert: altaTaxaDeErrosNasRequisicoes
+        expr: rate(http_server_requests_seconds_count{status="500"}[1m]) >= 0.2
+        for: 1m
+        labels:
+          app: livraria
+          severity: critical
+          group: backend-livraria
+          env: production
+        annotations:
+          title: Taxa de Erro alta
+          summary: A taxa de erro das requisições http estão com valores além do normal.
+          description: Mais de 50% das requisições http estão com erro.

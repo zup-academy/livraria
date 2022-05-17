@@ -1,0 +1,23 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'seutime@zup.com.br'
+  smtp_auth_identity: 'teste@gmail.com'
+  smtp_require_tls: true
+
+templates:
+  - '/etc/alertmanager/template/*.tmpl'
+
+route:
+  repeat_interval: 1h
+  receiver: operations-team
+
+receivers:
+  - name: 'operations-team'
+    email_configs:
+      - to: 'seutime@zup.com.br'
+        auth_username: 'emailalertas@zup.com.br'
+        auth_password: 'jktqureuhthqtvpl'
+        send_resolved: true
+
+
+

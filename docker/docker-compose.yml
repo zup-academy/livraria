@@ -5,14 +5,58 @@ services:
     ports: 
       - 8080:8080
     volumes:
-      - ../logs:/logs  
+      - ../logs:/logs
+    networks:
+      - metricas
   db:
     image: postgres
     restart: always
     hostname: dblivraria
     ports:
       - "5432:5432"
+    networks:
+      - metricas
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=livraria
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus-volume:/etc/prometheus/
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alerts_rules.yml:/etc/prometheus/alerts_rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - metricas
+  alertmanager:
+    image: prom/alertmanager:v0.23.0
+    restart: unless-stopped
+    ports:
+      - "9093:9093"
+    networks:
+      - metricas
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager.yml
+      - alertmanager-data:/etc/alertmanager/data
+    command: --config.file=/etc/alertmanager/alertmanager.yml --log.level=debug
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-volume:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - metricas
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-volume:
+  prometheus-volume:
+  alertmanager-data:
+
+networks:
+  metricas:
+    driver: bridge
