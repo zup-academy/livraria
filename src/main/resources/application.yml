@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://db:5432/livraria"
+    url: "jdbc:postgresql://localhost:5432/livraria"
     password: admin
     username: admin
     driver-class-name: org.postgresql.Driver
@@ -37,7 +37,18 @@ management:
 info:
   application:
     name: Livraria
-    description: Aplicação feita para Treinamento de Métricas e monitoramento
-    version: '@project.version@'
-    spring-cloud-version: '@spring-cloud.version@'
-    spring-boot-version: '@project.parent.version@'
+    description: Aplicação feita para Modelo
+
+cloud:
+  aws:
+    region:
+      static: sa-east-1
+      auto: false
+    credentials:
+      access-key: fakeAccessKeyId
+      secret-key: fakeSecretAccessKey
+    end-point:
+      uri: http://localhost:4566
+    queue:
+      name: notificacao
+
