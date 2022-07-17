@@ -41,6 +41,8 @@ info:
 
 cloud:
   aws:
+    stack:
+      auto: false
     region:
       static: sa-east-1
       auto: false
@@ -51,4 +53,3 @@ cloud:
       uri: http://localhost:4566
     queue:
       name: notificacao
-
