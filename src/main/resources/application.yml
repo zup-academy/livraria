@@ -39,17 +39,3 @@ info:
     name: Livraria
     description: Aplicação feita para Modelo
 
-cloud:
-  aws:
-    stack:
-      auto: false
-    region:
-      static: sa-east-1
-      auto: false
-    credentials:
-      access-key: fakeAccessKeyId
-      secret-key: fakeSecretAccessKey
-    end-point:
-      uri: http://localhost:4566
-    queue:
-      name: notificacao

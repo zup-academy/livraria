@@ -2,7 +2,6 @@ package com.zupedu.livraria.venda;
 
 import com.zupedu.livraria.estoque.EstoqueRepository;
 import com.zupedu.livraria.livro.LivroRepository;
-import com.zupedu.livraria.notificacao.NotificacaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,6 @@ public class VendaController {
     @Autowired
     private VendaRepository vendaRepository;
 
-    @Autowired
-    private NotificacaoService notificacaoService;
-
     @PostMapping
     public VendaResponse incluir(@RequestBody VendaRequest vendaRequest){
         var livro = livroRepository.findById(vendaRequest.getIdLivro())
@@ -45,14 +41,6 @@ public class VendaController {
         estoqueRepository.save(estoque);
         logger.info("Realizado Baixa no Estoque do Produto : {} , Quantidade : {} ",
                 estoque.getLivro().getId(), estoque.getQuantidade());
-
-        if(venda.realizaNotificacao()){
-            logger.info("Enviando notificação de venda para o cliente : {} ", venda.getEmailCliente());
-            notificacaoService.send(
-                    venda.getEmailCliente(),
-                    venda.getTituloNotificacao(),
-                    venda.getMensagemNotificacao());
-        }
 
         logger.info("Finalizando Venda ");
         return VendaResponse.from(venda);
