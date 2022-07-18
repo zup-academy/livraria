@@ -13,6 +13,26 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      group-id: livraria
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      group-id: livraria
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+topic:
+  name:
+    producer: teste
+    consumer: teste
+
 management:
   health:
     db:
@@ -38,18 +58,3 @@ info:
   application:
     name: Livraria
     description: Aplicação feita para Modelo
-
-cloud:
-  aws:
-    stack:
-      auto: false
-    region:
-      static: sa-east-1
-      auto: false
-    credentials:
-      access-key: fakeAccessKeyId
-      secret-key: fakeSecretAccessKey
-    end-point:
-      uri: http://localhost:4566
-    queue:
-      name: notificacao
