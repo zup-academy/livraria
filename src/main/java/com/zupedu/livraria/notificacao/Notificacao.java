@@ -32,4 +32,14 @@ public class Notificacao {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        return "Notificacao{" +
+                "destinatario='" + destinatario + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

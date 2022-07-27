@@ -20,13 +20,8 @@ public class NotificacaoProducer {
     private QueueMessagingTemplate messagingTemplate;
 
     private void send(final Notificacao notificacao) {
-//        Message<Notificacao> mensagem = MessageBuilder.withPayload(notificacao)
-//                .setHeader(MessageHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).build();
 
-//        Map<String, Object> headers = new HashMap<>();
-//        headers.put(MessageHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-
-        messagingTemplate.convertAndSend(queue, notificacao);
+        messagingTemplate.convertAndSend(queue, notificacao.toString());
 
         logger.info("Mensagem enviada : {}", notificacao.getMessage());
     }
