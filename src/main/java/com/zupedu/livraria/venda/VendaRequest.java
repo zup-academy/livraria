@@ -4,6 +4,7 @@ import com.zupedu.livraria.estoque.Estoque;
 import com.zupedu.livraria.livro.Livro;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 public class VendaRequest {
 
@@ -12,6 +13,7 @@ public class VendaRequest {
     private TipoPagamento tipoPagamento;
 
     @Email
+    @NotBlank
     private String emailCliente;
 
     public VendaRequest() {

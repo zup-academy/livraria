@@ -25,6 +25,9 @@ public class VendaController {
     @Autowired
     private VendaRepository vendaRepository;
 
+    @Autowired
+    private NovaVendaProducer novaVendaProducer;
+
     @PostMapping
     public VendaResponse incluir(@RequestBody VendaRequest vendaRequest){
         var livro = livroRepository.findById(vendaRequest.getIdLivro())
@@ -41,6 +44,8 @@ public class VendaController {
         estoqueRepository.save(estoque);
         logger.info("Realizado Baixa no Estoque do Produto : {} , Quantidade : {} ",
                 estoque.getLivro().getId(), estoque.getQuantidade());
+
+        novaVendaProducer.send(venda);
 
         logger.info("Finalizando Venda ");
         return VendaResponse.from(venda);

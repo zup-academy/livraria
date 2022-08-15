@@ -1,41 +1,24 @@
+server:
+  port: 8080
 spring:
-  datasource:
-    url: "jdbc:postgresql://localhost:5432/livraria"
-    password: admin
-    username: admin
-    driver-class-name: org.postgresql.Driver
   jpa:
-    ddl-auto: create
-    generate-ddl: true
-    show-sql: false
     hibernate:
       ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-management:
-  health:
-    db:
+  datasource:
+    url: jdbc:h2:~/livraria
+    username: root
+    password: root
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
       enabled: true
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  info:
-    build:
-      enabled: true
-    env:
-      enabled: true
-    git:
-      enabled: true
-    java:
-      enabled: true
+      path: /h2
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      group-id: livraria
+      topic: NOVA_VENDA
 
-info:
-  application:
-    name: Livraria
-    description: Aplicação feita para Modelo
 
